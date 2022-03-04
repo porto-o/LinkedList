@@ -1,155 +1,154 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include "D:\Users\ismae\CLionProjects\Listas\Elem.h"
-#include "D:\Users\ismae\CLionProjects\Listas\Lista.h"
+#include "Elem.h"
+#include "List.h"
 
-Lista LlenaLista(Lista);
-Lista LlenaListaOrd();
-int NumElemsL(Lista);
-void ImpLista(Lista);
-Lista PegaListas(Lista,Lista);
-Lista InvierteLista(Lista);
-Lista InsertOrd(Elem, Lista);
-Lista OrdenaLista(Lista);
-int estaEn(Elem, Lista);
+List Fill(List a);
+List FillSorted();
+int NumElemsL(List);
+void PrintList(List a);
+List PasteList(List a1, List a2);
+List InvertList(List a);
+List InsertSort(Elem e, List a);
+List SortList(List a);
+int isIn(Elem e, List a);
 
 int main()
 {
-    Lista a = vacia(), b = vacia(), c = vacia();
+    List a = empty(), b = empty(), c = empty();
     Elem e;
 
-    puts("Captura los elementos de la lista a:");
-    a = LlenaLista(a);
+    puts("Capture the elements of list 'a' (press 0 to stop):");
+    a = Fill(a);
 
-    puts("\nLos elementos de la lista 'a' son:");
-    ImpLista(a);
+    puts("\nThe elements of list 'a' are:");
+    PrintList(a);
 
-    //puts("\nLos elementos de la lista 'a' ordenados son: ");
-    //ImpLista(OrdenaLista(a));
+    puts("\nThe ordered elements of the list 'a' are: ");
+    PrintList(SortList(a));
 
-    puts("\nIngresa el elemento a buscar dentro de la lista 'a'");
-    e = LeeElem();
-    if(estaEn(e,a))
-        printf("El elemento si esta en la lista\n");
+    puts("\nCapture the element to search in the list 'a'");
+    e = ReadElem();
+    if(isIn(e, a))
+        printf("The element is in the list\n");
     else
-        printf("El elemento no esta en la lista\n");
+        printf("The element is not in the list\n");
 
-    //puts("\nCaptura los elementos de la lista b:");
-    //b = LlenaLista(b);
+    /*puts("\nCapture the elements of list 'b' (press 0 to stop exec):");
+    b = Fill(b);
 
-    //puts("\nCaptura los elementos de la lista c:");
-    //c = LlenaListaOrd();
-    //puts("\nLos elementos de la lista c ordenada son: ");
-    //ImpLista(c);
+    puts("\nCapture the elements of list 'c' (press 0 to stop exec):");
+    c = FillSorted();
 
-    //puts("\nLos elementos de la lista 'b' son:");
-    //ImpLista(b);
+    puts("\nThe ordered elements of the list 'c' are: ");
+    PrintList(c);
 
-    //puts("\nLos elementos de la lista a,b son: ");
-    //ImpLista(PegaListas(a,b));
+    puts("\nThe elements of list 'b' are:");
+    PrintList(b);
 
-    //puts("\nLos elementos de la lista b,a son: ");
-    //ImpLista(PegaListas(b,a));
+    puts("\nThe elements of list a,b are: ");
+    PrintList(PasteList(a,b));
 
-    //puts("\nLos elementos de la lista a,b invertidos: ");
-    //ImpLista(InvierteLista(PegaListas(a,b)));
+    puts("\nThe elements of list b,a are: ");
+    PrintList(PasteList(b,a));
 
-    //puts("\nLos elementos de la lista b,a invertidos: ");
-    //ImpLista(InvierteLista(PegaListas(b,a)));
+    puts("\nThe inverted elements of list a,b are: ");
+    PrintList(InvertList(PasteList(a,b)));
 
-    //a = cons(4, cons(10, cons(30,vacia())));
-    //esvacia(a)? printf("Es vacia :(\n"):printf("No es vacia :(\n");
-    //cabeza(a);
-    //printf("La lista tiene %d elementos\n", NumElemsL(a));
-    //ImpElem(cabeza(a));
-    //ImpElem(cabeza(resto(a)));
+    puts("\nThe inverted elements of list b,a are: ");
+    PrintList(InvertList(PasteList(b,a)));
+
+    a = newList(4, newList(10, newList(30,empty())));
+    isEmpty(a)? printf("\nIs empty :(\n"):printf("\nIs not empty :(\n");
+    head(a);
+    printf("The list has %d elements\n", NumElemsL(a));
+    PrintElem(head(a));
+    PrintElem(head(rest(a)));*/
     return 0;
 };
 
-int NumElemsL(Lista l)
+int NumElemsL(List l)
 {
-    if(esvacia(l))
+    if(isEmpty(l))
         return 0;
     else
         // At least 1 element
-        return 1 + NumElemsL(resto(l));
+        return 1 + NumElemsL(rest(l));
 };
 
-Lista LlenaLista(Lista a)
+List Fill(List a)
 {
     Elem e;
-    while ((e=LeeElem()))
-        a = cons(e,a);
+    while ((e= ReadElem()))
+        a = newList(e, a);
     return a;
 };
 
-Lista LlenaListaOrd()
+List FillSorted()
 {
     Elem e;
-    Lista a=vacia();
-    while((e=LeeElem()))
-        a=InsertOrd(e,a);
+    List a= empty();
+    while((e= ReadElem()))
+        a= InsertSort(e, a);
     return a;
 };
 
-void ImpLista(Lista a)
+void PrintList(List a)
 {
-    if(!(esvacia(a))) {
-        ImpElem(cabeza(a));
-        ImpLista(resto(a));
+    if(!(isEmpty(a))) {
+        PrintElem(head(a));
+        PrintList(rest(a));
     }
 };
 
-Lista PegaListas(Lista a1,Lista a2)
+List PasteList(List a1, List a2)
 {
-  if(esvacia(a1))
+  if(isEmpty(a1))
       return a2;
   else
-      return cons(cabeza(a1), PegaListas(resto(a1),a2));
+      return newList(head(a1), PasteList(rest(a1), a2));
 };
 
-Lista InvierteLista(Lista a)
+List InvertList(List a)
 {
     /**
-     * Invertir resto
-     * Convertir cabeza a lista
-     * Pegar listas
+     * Invert rest
+     * Turn head to list
+     * Paste lists
      * */
-     if((esvacia(a)))
+     if((isEmpty(a)))
          return a;
      else
-         return PegaListas(InvierteLista(resto(a)), cons(cabeza(a), vacia()));
+         return PasteList(InvertList(rest(a)), newList(head(a), empty()));
 }
 
-Lista InsertOrd(Elem e, Lista a)
+List InsertSort(Elem e, List a)
 {
-    if(esvacia(a))
-        return cons(e,a);
-    else if(EsMenor(e,cabeza(a)))
-        return cons(e,a);
+    if(isEmpty(a))
+        return newList(e, a);
+    else if(isLess(e, head(a)))
+        return newList(e, a);
     else
-        return cons(cabeza(a),InsertOrd(e,resto(a)));
+        return newList(head(a), InsertSort(e, rest(a)));
 
 
 }
 
-Lista OrdenaLista(Lista a)
+List SortList(List a)
 {
-  if((esvacia(a)))
+  if((isEmpty(a)))
       return a;
   else
-      return InsertOrd(cabeza(a), OrdenaLista(resto(a)));
+      return InsertSort(head(a), SortList(rest(a)));
 };
 
-int estaEn(Elem e, Lista a) {
-    //printf("%d", cabeza(resto(a)));
+int isIn(Elem e, List a) {
     int bool = 0;
-    if ((esvacia(a)))
+    if ((isEmpty(a)))
         return 0;
     else
     {
         for (int i = 0; i < NumElemsL(a); ++i) {
-            bool = (e == cabeza(a))?1: estaEn(e, resto(a));
+            bool = (e == head(a)) ? 1 : isIn(e, rest(a));
         }
         return bool;
     }

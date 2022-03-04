@@ -12,7 +12,7 @@ is the first output **(LiFo)**
 ### Specification
 - **Builders**.
     - `empty:->List`
-    - `new:Elem,List->List`
+    - `newList:Elem,List->List`
 - **Watchers**.
     - `isEmpty:List->Bool`
     - `head:List->Elem`
@@ -21,9 +21,9 @@ is the first output **(LiFo)**
 ***
 ###Axioms
 1. `isEmpty(empty()) = True`
-2. `isEmpty(new(e,l)) = False`
+2. `isEmpty(newList(e,l)) = False`
 3. `head(empty()) = ERROR`
-4. `head(new(e,l)) = e`
+4. `head(newList(e,l)) = e`
 5. `rest(empty()) = ERROR`
-6. `rest(new(e,l)) = l`
+6. `rest(newList(e,l)) = l`
 

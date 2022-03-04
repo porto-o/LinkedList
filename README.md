@@ -7,7 +7,10 @@ is the first output **(LiFo)**
 ### Form
 1. Empty list, `[]`.
 2. At least 1 element **`[X|Xs]`** where X is the last input and is called **head**.
-2. Xs is the **rest** of the list and is also a list.
+3. Xs is the **rest** of the list and is also a list.
+
+![Illustration!](https://miro.medium.com/max/970/1*f2oDQ0cdY54olxCFOIMIdQ.png)
+
 ***
 ### Specification
 - **Builders**.

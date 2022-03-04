@@ -1,3 +1,0 @@
-D:/Users/ismae/CLionProjects/Listas/cmake-build-debug/CMakeFiles/Listas.dir
-D:/Users/ismae/CLionProjects/Listas/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Users/ismae/CLionProjects/Listas/cmake-build-debug/CMakeFiles/rebuild_cache.dir

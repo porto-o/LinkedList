@@ -10,14 +10,14 @@ is the first output **(LiFo)**
 2. Xs is the **rest** of the list and is also a list.
 ***
 ### Specification
-**Builders**.
-`empty:->List`
-`new:Elem,List->List`
-**Watchers**.
-`isEmpty:List->Bool`
-`head:List->Elem`
-**Splitters**.
-`rest:List->List`
+- **Builders**.
+    - `empty:->List`
+    - `new:Elem,List->List`
+- **Watchers**.
+    - `isEmpty:List->Bool`
+    - `head:List->Elem`
+- **Splitters**.
+    - `rest:List->List`
 ***
 ###Axioms
 1. `isEmpty(empty()) = True`

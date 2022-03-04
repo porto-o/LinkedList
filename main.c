@@ -11,15 +11,28 @@ Lista PegaListas(Lista,Lista);
 Lista InvierteLista(Lista);
 Lista InsertOrd(Elem, Lista);
 Lista OrdenaLista(Lista);
+int estaEn(Elem, Lista);
 
 int main()
 {
     Lista a = vacia(), b = vacia(), c = vacia();
+    Elem e;
+
     puts("Captura los elementos de la lista a:");
     a = LlenaLista(a);
 
-    puts("\nLos elementos de la lista 'a' ordenados son: ");
-    ImpLista(OrdenaLista(a));
+    puts("\nLos elementos de la lista 'a' son:");
+    ImpLista(a);
+
+    //puts("\nLos elementos de la lista 'a' ordenados son: ");
+    //ImpLista(OrdenaLista(a));
+
+    puts("\nIngresa el elemento a buscar dentro de la lista 'a'");
+    e = LeeElem();
+    if(estaEn(e,a))
+        printf("El elemento si esta en la lista\n");
+    else
+        printf("El elemento no esta en la lista\n");
 
     //puts("\nCaptura los elementos de la lista b:");
     //b = LlenaLista(b);
@@ -28,9 +41,6 @@ int main()
     //c = LlenaListaOrd();
     //puts("\nLos elementos de la lista c ordenada son: ");
     //ImpLista(c);
-
-    //puts("\nLos elementos de la lista 'a' son:");
-    //ImpLista(a);
 
     //puts("\nLos elementos de la lista 'b' son:");
     //ImpLista(b);
@@ -130,3 +140,17 @@ Lista OrdenaLista(Lista a)
   else
       return InsertOrd(cabeza(a), OrdenaLista(resto(a)));
 };
+
+int estaEn(Elem e, Lista a) {
+    //printf("%d", cabeza(resto(a)));
+    int bool = 0;
+    if ((esvacia(a)))
+        return 0;
+    else
+    {
+        for (int i = 0; i < NumElemsL(a); ++i) {
+            bool = (e == cabeza(a))?1: estaEn(e, resto(a));
+        }
+        return bool;
+    }
+}

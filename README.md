@@ -22,7 +22,7 @@ is the first output **(LiFo)**
 - **Splitters**.
     - `rest:List->List`
 ***
-###Axioms
+### Axioms
 1. `isEmpty(empty()) = True`
 2. `isEmpty(newList(e,l)) = False`
 3. `head(empty()) = ERROR`

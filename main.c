@@ -112,7 +112,7 @@ List InvertList(List a)
 {
     /**
      * Invert rest
-     * Turn head to list
+     * Turn head into list
      * Paste lists
      * */
      if((isEmpty(a)))

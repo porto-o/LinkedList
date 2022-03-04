@@ -4,10 +4,10 @@
 typedef struct Node
 {
     Elem data;
-    struct Node *next; // Apuntador hacia un Node
+    struct Node *next; // Pointer to other Node
 }*List;
 
-// Comenzando especificación
+// Begins Spec
 
 // empty:->List
 List empty()
@@ -18,10 +18,10 @@ List empty()
 // const:Elem, List->List
 List newList(Elem e, List l)
 {
-    // Cada elemento vive en un nodo
-    // 1.- Crear nodo
-        // Generame espacio en memoria para contener al struct Node
-        // Convertimos a tipo lista porque malloc devuelve un pointer
+    // Each element lives in a node
+    // 1.- Create node
+        // Generate space in memory for struct node
+        // Convert to type List because 'malloc' returns a pointer
     List temp = (List)malloc(sizeof(struct Node));
 
     temp->data = e;
@@ -30,7 +30,7 @@ List newList(Elem e, List l)
     return temp;
 };
 
-// Observadoras
+// Observers
 
 // isEmpty:List -> Bool
 int isEmpty(List l)
@@ -41,10 +41,10 @@ int isEmpty(List l)
 // head:List->Elem;
 Elem head(List l)
 {
-    return l->data; // Campo data de l
+    return l->data; // Data field of the node
 };
 
-// Desdobladoras
+// Splitter
 
 //rest:List->List;
 List rest(List l)

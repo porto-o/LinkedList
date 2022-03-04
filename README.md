@@ -16,7 +16,7 @@ is the first output **(LiFo)**
 - **Builders**.
     - `empty:->List`
     - `newList:Elem,List->List`
-- **Watchers**.
+- **Observers**.
     - `isEmpty:List->Bool`
     - `head:List->Elem`
 - **Splitters**.

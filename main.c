@@ -13,12 +13,17 @@ Lista SubLista2(Elem, Elem, Lista); // Retorna la lista entre las primeras ocurr
 Lista SubLista3(Elem, Lista);
 Lista CambiaElem(Elem, Elem, Lista); // Cambia todos los elementos de una lista e1, con e2
 Lista InsertFrenteN(int, Elem, Lista); // Inserta n veces el elemento al frente de la lista
+Lista InsertFinalN(int, Elem, Lista); // Inserta n veces el elemento al final de la lista
+int EsPalindromo(Lista);
+int ListasIguales(Lista, Lista);
+Lista OrdenarLista(Lista);
+Lista InsOrd(Elem, Lista);
 
 int main() {
-    Lista l = cons(1, cons(2, cons(3, cons(4,vacia()))));
+    Lista l = cons(1, cons(2, cons(3, cons(3, cons(2, cons(1, vacia()))))));
     //ImpLista(l);
 
-    Lista m = cons(5, cons(6, cons(7, cons(8, cons(5, cons(5, cons(5,vacia())))))));
+    Lista m = cons(1, cons(-1, cons(3, cons(4,vacia()))));
     //ImpLista(PegarListas(l,m));
     //ImpLista(InvertirLista(m));
     //ImpElem(EstaEn(8,m));
@@ -26,7 +31,15 @@ int main() {
     //ImpLista(SubLista(5,m));
     //ImpLista(SubLista2(5,5,m));
     //ImpLista(CambiaElem(900,5,m));
-    ImpLista(InsertFrenteN(5,45,m));
+    //ImpLista(InsertFrenteN(8,45,m));
+    //ImpLista(PegarListas(l,m));
+    //printf("\n");
+    //ImpLista(PegarListas(m,l));
+    //printf("\n");
+    InsertFinalN(8,45,m);
+    //ImpElem(EsPalindromo(l));
+    //ImpLista(OrdenarLista(m));
+    //ImpLista(InsOrd(2,m));
 }
 
 int NumElems(Lista l){
@@ -133,7 +146,61 @@ Lista CambiaElem(Elem e1, Elem e2, Lista l)
 
 Lista InsertFrenteN(int n, Elem e, Lista l)
 {
+    Lista temp = vacia();
+    if(n > 0)
+        temp = cons(e, InsertFrenteN(n-1,e,l));
+    else
+        return PegarListas(temp,l);
+}
 
-    return cons(e, PegarListas(InsertFrenteN(n,e, resto(l)),l));
+Lista InsertFinalN(int n, Elem e, Lista l)
+{
+    Lista temp = vacia();
+    if(n > 0) {
+        printf("Hola\n");
+        temp = cons(e, InsertFinalN(n - 1, e, l));
+        ImpLista(temp);
+        printf("\n");
+    }
+    else {
+        return PegarListas(l, temp);
+    }
+}
 
+int ListasIguales(Lista l1, Lista l2)
+{
+    if(esVacia(l1) && esVacia(l2))
+        return 1;
+    else if(esVacia(l1))
+        return 0;
+    else if(esVacia(l2))
+        return 0;
+    else if(EsIgual(cabeza(l1), cabeza(l2)))
+        return ListasIguales(resto(l1), resto(l2));
+    else
+        return 0;
+
+}
+
+int EsPalindromo(Lista l)
+{
+    return ListasIguales(InvertirLista(l),l);
+}
+
+// Repasar InsOrd y OrdenarLista
+
+Lista InsOrd(Elem e, Lista l)
+{
+    if(esVacia(l) || esMenor(e, cabeza(l)))
+        return cons(e,l);
+    else
+        return cons(cabeza(l), InsOrd(e, resto(l)));
+}
+
+Lista OrdenarLista(Lista l)
+{
+    if(esVacia(l))
+        return l;
+    else
+        return InsOrd(cabeza(l), OrdenarLista(resto(l)));
 }

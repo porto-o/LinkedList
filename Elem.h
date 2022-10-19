@@ -20,4 +20,4 @@ int SonDiferentes(Elem e1, Elem e2)
     return e1 == e2;
 }
 
-int isLess(Elem e1, Elem e2){return e1 < e2;}
+int esMenor(Elem e1, Elem e2){return e1 < e2;}

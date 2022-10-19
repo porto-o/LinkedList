@@ -1,155 +1,139 @@
-#include <stdio.h>
 #include "Elem.h"
 #include "List.h"
 
-List Fill(List a);
-List FillSorted();
-int NumElemsL(List);
-void PrintList(List a);
-List PasteList(List a1, List a2);
-List InvertList(List a);
-List InsertSort(Elem e, List a);
-List SortList(List a);
-int isIn(Elem e, List a);
 
-int main()
-{
-    List a = empty(), b = empty(), c = empty();
-    Elem e;
+int NumElems(Lista);
+void ImpLista(Lista);
+Lista PegarListas(Lista, Lista);
+Lista InvertirLista(Lista);
+int EstaEn(Elem, Lista);
+int Ocurrencias(Elem, Lista);
+Lista SubLista(Elem, Lista); // Retorna la lista formada despues de la primera ocurrencia de E en L
+Lista SubLista2(Elem, Elem, Lista); // Retorna la lista entre las primeras ocurrencias de 2 elementos en una lista
+Lista SubLista3(Elem, Lista);
+Lista CambiaElem(Elem, Elem, Lista); // Cambia todos los elementos de una lista e1, con e2
+Lista InsertFrenteN(int, Elem, Lista); // Inserta n veces el elemento al frente de la lista
 
-    puts("Capture the elements of list 'a' (press 0 to stop):");
-    a = Fill(a);
+int main() {
+    Lista l = cons(1, cons(2, cons(3, cons(4,vacia()))));
+    //ImpLista(l);
 
-    puts("\nThe elements of list 'a' are:");
-    PrintList(a);
-
-    puts("\nThe ordered elements of the list 'a' are: ");
-    PrintList(SortList(a));
-
-    puts("\nCapture the element to search in the list 'a'");
-    e = ReadElem();
-    if(isIn(e, a))
-        printf("The element is in the list\n");
-    else
-        printf("The element is not in the list\n");
-
-    /*puts("\nCapture the elements of list 'b' (press 0 to stop exec):");
-    b = Fill(b);
-
-    puts("\nCapture the elements of list 'c' (press 0 to stop exec):");
-    c = FillSorted();
-
-    puts("\nThe ordered elements of the list 'c' are: ");
-    PrintList(c);
-
-    puts("\nThe elements of list 'b' are:");
-    PrintList(b);
-
-    puts("\nThe elements of list a,b are: ");
-    PrintList(PasteList(a,b));
-
-    puts("\nThe elements of list b,a are: ");
-    PrintList(PasteList(b,a));
-
-    puts("\nThe inverted elements of list a,b are: ");
-    PrintList(InvertList(PasteList(a,b)));
-
-    puts("\nThe inverted elements of list b,a are: ");
-    PrintList(InvertList(PasteList(b,a)));
-
-    a = newList(4, newList(10, newList(30,empty())));
-    isEmpty(a)? printf("\nIs empty :(\n"):printf("\nIs not empty :(\n");
-    head(a);
-    printf("The list has %d elements\n", NumElemsL(a));
-    PrintElem(head(a));
-    PrintElem(head(rest(a)));*/
-    return 0;
-};
-
-int NumElemsL(List l)
-{
-    if(isEmpty(l))
-        return 0;
-    else
-        // At least 1 element
-        return 1 + NumElemsL(rest(l));
-};
-
-List Fill(List a)
-{
-    Elem e;
-    while ((e= ReadElem()))
-        a = newList(e, a);
-    return a;
-};
-
-List FillSorted()
-{
-    Elem e;
-    List a= empty();
-    while((e= ReadElem()))
-        a= InsertSort(e, a);
-    return a;
-};
-
-void PrintList(List a)
-{
-    if(!(isEmpty(a))) {
-        PrintElem(head(a));
-        PrintList(rest(a));
-    }
-};
-
-List PasteList(List a1, List a2)
-{
-  if(isEmpty(a1))
-      return a2;
-  else
-      return newList(head(a1), PasteList(rest(a1), a2));
-};
-
-List InvertList(List a)
-{
-    /**
-     * Invert rest
-     * Turn head into list
-     * Paste lists
-     * */
-     if((isEmpty(a)))
-         return a;
-     else
-         return PasteList(InvertList(rest(a)), newList(head(a), empty()));
+    Lista m = cons(5, cons(6, cons(7, cons(8, cons(5, cons(5, cons(5,vacia())))))));
+    //ImpLista(PegarListas(l,m));
+    //ImpLista(InvertirLista(m));
+    //ImpElem(EstaEn(8,m));
+    //ImpElem(Ocurrencias(5,m));
+    //ImpLista(SubLista(5,m));
+    //ImpLista(SubLista2(5,5,m));
+    //ImpLista(CambiaElem(900,5,m));
+    ImpLista(InsertFrenteN(5,45,m));
 }
 
-List InsertSort(Elem e, List a)
-{
-    if(isEmpty(a))
-        return newList(e, a);
-    else if(isLess(e, head(a)))
-        return newList(e, a);
-    else
-        return newList(head(a), InsertSort(e, rest(a)));
+int NumElems(Lista l){
+    if(esVacia(l)){
+        return 0;
+    }else{
+        return 1 + NumElems(resto(l));
+    }
+}
 
+void ImpLista(Lista l){
+    if(!esVacia(l)){
+        ImpElem(cabeza(l));
+        ImpLista(resto(l));
+    }
+}
+
+Lista PegarListas(Lista l, Lista m){
+    if(esVacia(l))
+        return m;
+    else
+        return cons(cabeza(l), PegarListas(resto(l), m));
+}
+
+Lista InvertirLista(Lista l){
+    if(esVacia(l))
+        return vacia();
+    else
+        return PegarListas(InvertirLista(resto(l)), cons(cabeza(l),vacia()));
+}
+
+int EstaEn(Elem e, Lista l){
+    if(esVacia(l))
+        return 0;
+    else if(!(EsIgual(cabeza(l),e))){
+        return EstaEn(e, resto(l));
+    }else{
+        return 1;
+    }
+}
+
+int Ocurrencias(Elem e, Lista l){
+    if(esVacia(l) && !EstaEn(e,l))
+        return 0;
+    else if(EsIgual(e, cabeza(l)))
+        return 1 + Ocurrencias(e, resto(l));
+    else
+        return Ocurrencias(e, resto(l));
 
 }
 
-List SortList(List a)
+Lista SubLista(Elem e, Lista l)
 {
-  if((isEmpty(a)))
-      return a;
-  else
-      return InsertSort(head(a), SortList(rest(a)));
-};
-
-int isIn(Elem e, List a) {
-    int bool = 0;
-    if ((isEmpty(a)))
-        return 0;
+    if(esVacia(l))
+        return vacia();
+    else if(EsIgual(cabeza(l), e))
+        return resto(l);
     else
-    {
-        for (int i = 0; i < NumElemsL(a); ++i) {
-            bool = (e == head(a)) ? 1 : isIn(e, rest(a));
-        }
-        return bool;
+        return SubLista(e, resto(l));
+}
+
+
+/**
+ * 1. Vemos si la cabeza coincide con mi limite 1
+ *
+ * 2. Si coincide, llamamos a la funcion que "arma" la lista después de la coincidencia, le mandamos el resto
+ *      2.1. Si coincide e2 con la cabeza del resto, retornamos vacia porque no existe ningun numero intermedio
+ *      2.2. Si no coincide, construimos esa cabeza y llamamos otra vez a esa función pero ahora le mandamos
+ *              el otro resto
+ *
+ * 3. Si no coincide, llamamos recursivamente ahora con el resto
+ * */
+
+Lista SubLista2(Elem e1, Elem e2, Lista l)
+{
+    if(esVacia(l))
+        return l;
+    else if(EsIgual(e1, cabeza(l)))
+        return SubLista3(e2,resto(l));
+    else
+        return SubLista2(e1,e2, resto(l));
+}
+
+Lista SubLista3(Elem e2, Lista l)
+{
+    if(esVacia(l))
+        return l;
+    else if(!(SonDiferentes(e2,cabeza(l))))
+        return cons(cabeza(l), SubLista3(e2, resto(l)));
+
+    // Aqui quitamos el último else donde se retorna vacio, porque siempre retornaria un vacio
+}
+
+Lista CambiaElem(Elem e1, Elem e2, Lista l)
+{
+    if(esVacia(l))
+        return l;
+    else if(EsIgual(e2, cabeza(l))){
+        return cons(e1, CambiaElem(e1,e2, resto(l)));
     }
+    else
+        return cons(cabeza(l),CambiaElem(e1,e2, resto(l)));
+}
+
+Lista InsertFrenteN(int n, Elem e, Lista l)
+{
+
+    return cons(e, PegarListas(InsertFrenteN(n,e, resto(l)),l));
+
 }

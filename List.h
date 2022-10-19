@@ -1,53 +1,53 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-typedef struct Node
+typedef struct Nodo
 {
-    Elem data;
-    struct Node *next; // Pointer to other Node
-}*List;
+    Elem dato;
+    struct Nodo *sig; // Pointer to other Nodo
+}*Lista;
 
 // Begins Spec
 
-// empty:->List
-List empty()
+// vacia:->Lista
+Lista vacia()
 {
     return NULL;
 }
 
-// const:Elem, List->List
-List newList(Elem e, List l)
+// const:Elem, Lista->Lista
+Lista cons(Elem e, Lista l)
 {
     // Each element lives in a node
     // 1.- Create node
         // Generate space in memory for struct node
-        // Convert to type List because 'malloc' returns a pointer
-    List temp = (List)malloc(sizeof(struct Node));
+        // Convert to type Lista because 'malloc' returns a pointer
+    Lista temp = (Lista)malloc(sizeof(struct Nodo));
 
-    temp->data = e;
-    temp->next = l;
+    temp->dato = e;
+    temp->sig = l;
 
     return temp;
 };
 
 // Observers
 
-// isEmpty:List -> Bool
-int isEmpty(List l)
+// esVacia:Lista -> Bool
+int esVacia(Lista l)
 {
   return l==NULL;
 };
 
-// head:List->Elem;
-Elem head(List l)
+// cabeza:Lista->Elem;
+Elem cabeza(Lista l)
 {
-    return l->data; // Data field of the node
+    return l->dato; // Data field of the node
 };
 
 // Splitter
 
-//rest:List->List;
-List rest(List l)
+//resto:Lista->Lista;
+Lista resto(Lista l)
 {
-    return l->next;
+    return l->sig;
 };

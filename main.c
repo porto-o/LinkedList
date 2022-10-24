@@ -29,14 +29,14 @@ int main() {
     //ImpElem(EstaEn(8,m));
     //ImpElem(Ocurrencias(5,m));
     //ImpLista(SubLista(5,m));
-    //ImpLista(SubLista2(5,5,m));
+    ImpLista(SubLista2(1,2, cons(5, cons(4, cons(1, cons(3, cons(8, cons(9, cons(2, cons(7,vacia()))))))))));
     //ImpLista(CambiaElem(900,5,m));
-    ImpLista(InsertFrenteN(10,45,m));
+    //ImpLista(InsertFrenteN(10,45,m));
     //ImpLista(PegarListas(l,m));
     //printf("\n");
     //ImpLista(PegarListas(m,l));
-    printf("\n");
-    ImpLista(InsertFinalN(10,45,m));
+    //printf("\n");
+    //ImpLista(InsertFinalN(10,45,m));
     //ImpElem(EsPalindromo(l));
     //ImpLista(OrdenarLista(m));
     //ImpLista(InsOrd(2,m));
@@ -122,6 +122,8 @@ Lista SubLista2(Elem e1, Elem e2, Lista l)
     else
         return SubLista2(e1,e2, resto(l));
 }
+
+// SubLista 3 retorna la lista despues de la primer coincidencia
 
 Lista SubLista3(Elem e2, Lista l)
 {

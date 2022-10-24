@@ -147,8 +147,7 @@ Lista CambiaElem(Elem e1, Elem e2, Lista l)
 Lista InsertFrenteN(int n, Elem e, Lista l)
 {
     if(n > 0) {
-        l = cons(e, InsertFrenteN(n - 1, e, l));
-        return l;
+        return cons(e, InsertFrenteN(n - 1, e, l));
     }else
         return l;
 }

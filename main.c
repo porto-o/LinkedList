@@ -29,7 +29,7 @@ int main() {
     //ImpElem(EstaEn(8,m));
     //ImpElem(Ocurrencias(5,m));
     //ImpLista(SubLista(5,m));
-    ImpLista(SubLista2(1,2, cons(5, cons(4, cons(1, cons(3, cons(8, cons(9, cons(2, cons(7,vacia()))))))))));
+    ImpLista(SubLista2(1,9, cons(5, cons(4, cons(1, cons(3, cons(8, cons(9, cons(2, cons(7,vacia()))))))))));
     //ImpLista(CambiaElem(900,5,m));
     //ImpLista(InsertFrenteN(10,45,m));
     //ImpLista(PegarListas(l,m));
@@ -129,8 +129,10 @@ Lista SubLista3(Elem e2, Lista l)
 {
     if(esVacia(l))
         return l;
-    else if(!(SonDiferentes(e2,cabeza(l))))
+    else if(SonDiferentes(e2,cabeza(l)))
         return cons(cabeza(l), SubLista3(e2, resto(l)));
+    else
+        return vacia();
 
     // Aqui quitamos el último else donde se retorna vacio, porque siempre retornaria un vacio
 }

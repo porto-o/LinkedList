@@ -17,7 +17,7 @@ int EsIgual(Elem e1, Elem e2){
 
 int SonDiferentes(Elem e1, Elem e2)
 {
-    return e1 == e2;
+    return e1 != e2;
 }
 
 int esMenor(Elem e1, Elem e2){return e1 < e2;}

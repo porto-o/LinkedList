@@ -31,12 +31,12 @@ int main() {
     //ImpLista(SubLista(5,m));
     //ImpLista(SubLista2(5,5,m));
     //ImpLista(CambiaElem(900,5,m));
-    //ImpLista(InsertFrenteN(8,45,m));
+    ImpLista(InsertFrenteN(10,45,m));
     //ImpLista(PegarListas(l,m));
     //printf("\n");
     //ImpLista(PegarListas(m,l));
-    //printf("\n");
-    InsertFinalN(8,45,m);
+    printf("\n");
+    ImpLista(InsertFinalN(10,45,m));
     //ImpElem(EsPalindromo(l));
     //ImpLista(OrdenarLista(m));
     //ImpLista(InsOrd(2,m));
@@ -146,25 +146,19 @@ Lista CambiaElem(Elem e1, Elem e2, Lista l)
 
 Lista InsertFrenteN(int n, Elem e, Lista l)
 {
-    Lista temp = vacia();
-    if(n > 0)
-        temp = cons(e, InsertFrenteN(n-1,e,l));
-    else
-        return PegarListas(temp,l);
+    if(n > 0) {
+        l = cons(e, InsertFrenteN(n - 1, e, l));
+        return l;
+    }else
+        return l;
 }
 
 Lista InsertFinalN(int n, Elem e, Lista l)
 {
-    Lista temp = vacia();
-    if(n > 0) {
-        printf("Hola\n");
-        temp = cons(e, InsertFinalN(n - 1, e, l));
-        ImpLista(temp);
-        printf("\n");
-    }
-    else {
-        return PegarListas(l, temp);
-    }
+    if(n > 0)
+        return PegarListas(l, (cons(e, InsertFinalN(n-1,e,vacia()))));
+    else
+        return l;
 }
 
 int ListasIguales(Lista l1, Lista l2)

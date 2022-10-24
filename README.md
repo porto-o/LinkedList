@@ -1,4 +1,4 @@
-# Linked Lista
+# Linked List
 ***
 ### Behaviour
 It's a dato structure where the last input.

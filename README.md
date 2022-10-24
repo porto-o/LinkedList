@@ -1,7 +1,7 @@
 # Linked List
 ***
 ### Behaviour
-It's a dato structure where the last input.
+It's a data structure where the last input.
 is the first output **(LiFo)**
 ***
 ### Form

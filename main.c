@@ -1,7 +1,6 @@
 #include "Elem.h"
 #include "List.h"
 
-
 int NumElems(Lista);
 void ImpLista(Lista);
 Lista PegarListas(Lista, Lista);
@@ -100,7 +99,6 @@ Lista SubLista(Elem e, Lista l)
     else
         return SubLista(e, resto(l));
 }
-
 
 /**
  * 1. Vemos si la cabeza coincide con mi limite 1
